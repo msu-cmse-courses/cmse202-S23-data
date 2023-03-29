@@ -50,11 +50,12 @@ class Environment():
                         temp_new_agents = agent.procreate(dt, self.animal_agents)
                         if len(temp_new_agents) > 0:
                             temp_agents.extend(temp_new_agents)
-                else:
+                elif agent.ptype == "Predator":
                     caught_prey = agent.hunt(self.animal_agents)
                     if caught_prey:
                         temp_hunted_agents.append(caught_prey)
-
+                    temp_agents.append(agent)
+            
             for agent in temp_hunted_agents:
                 temp_agents.remove(agent)        
             self.animal_agents.clear
